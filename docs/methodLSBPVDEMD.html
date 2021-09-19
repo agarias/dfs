@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module methodLSBPVDEMD</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>methodLSBPVDEMD</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:e%3A%5C2021%5Cuni%5Ctfg%5Cgithub%5Cdfs%5Cdfstego%5Cmethods%5Cmethodlsbpvdemd.py">e:\2021\uni\tfg\github\dfs\dfstego\methods\methodlsbpvdemd.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="elias.html">elias</a><br>
+<a href="emd.html">emd</a><br>
+</td><td width="25%" valign=top><a href="importlib.util.html">importlib.util</a><br>
+<a href="myconstants.html">myconstants</a><br>
+</td><td width="25%" valign=top><a href="pvd.html">pvd</a><br>
+<a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top><a href="utils.html">utils</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-calculate_average_pixel_value_difference"><strong>calculate_average_pixel_value_difference</strong></a>(red_pc, red_p1, red_p2, red_p3)</dt></dl>
+ <dl><dt><a name="-change_block"><strong>change_block</strong></a>(pix, x, y, data, pointer)</dt><dd><tt>Función&nbsp;que&nbsp;recibe&nbsp;una&nbsp;matriz&nbsp;de&nbsp;píxeles&nbsp;de&nbsp;una&nbsp;imagen,&nbsp;un&nbsp;array&nbsp;de&nbsp;bits&nbsp;de&nbsp;un&nbsp;mesaje&nbsp;de&nbsp;texto<br>
+las&nbsp;coordenas&nbsp;del&nbsp;origen&nbsp;de&nbsp;un&nbsp;bloque&nbsp;2x2&nbsp;y&nbsp;la&nbsp;posición&nbsp;del&nbsp;array&nbsp;de&nbsp;bits&nbsp;del&nbsp;siguiente&nbsp;bit&nbsp;a&nbsp;codificar<br>
+que&nbsp;codifica&nbsp;parte&nbsp;del&nbsp;mensaje&nbsp;en&nbsp;el&nbsp;bloque&nbsp;inidicado&nbsp;con&nbsp;el&nbsp;método&nbsp;implementado&nbsp;en&nbsp;el&nbsp;módulo.<br>
+*Parametros*:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;x,&nbsp;y&nbsp;:&nbsp;Coordenas&nbsp;del&nbsp;origen&nbsp;del&nbsp;bloque&nbsp;2x2&nbsp;.&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;data&nbsp;:&nbsp;Array&nbsp;de&nbsp;bits&nbsp;a&nbsp;codificar&nbsp;en&nbsp;la&nbsp;matriz&nbsp;de&nbsp;píxeles.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;pix&nbsp;:&nbsp;Varieble&nbsp;de&nbsp;entrada/salida&nbsp;que&nbsp;representa&nbsp;la&nbsp;Matriz&nbsp;de&nbsp;píxeles&nbsp;de&nbsp;una&nbsp;imagen,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;se&nbsp;devuelve&nbsp;modificada&nbsp;con&nbsp;los&nbsp;bits&nbsp;del&nbsp;mensajes&nbsp;correspondientes&nbsp;codificados&nbsp;en&nbsp;el&nbsp;bloque.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;pointer&nbsp;:&nbsp;Variable&nbsp;que&nbsp;funciona&nbsp;como&nbsp;entrada/salida&nbsp;donde&nbsp;se&nbsp;indica&nbsp;cual&nbsp;es&nbsp;el&nbsp;siguiente&nbsp;bit&nbsp;a&nbsp;códificar<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tanto&nbsp;al&nbsp;recibirlo&nbsp;como&nbsp;al&nbsp;devolverlo.</tt></dd></dl>
+ <dl><dt><a name="-decode_message_to_picture"><strong>decode_message_to_picture</strong></a>(picture)</dt><dd><tt>Función&nbsp;que&nbsp;recibe&nbsp;una&nbsp;imagen&nbsp;en&nbsp;la&nbsp;que&nbsp;busca&nbsp;un&nbsp;mesaje&nbsp;de&nbsp;texto&nbsp;codificado&nbsp;en&nbsp;el&nbsp;método&nbsp;implementado&nbsp;en&nbsp;el&nbsp;módulo<br>
+,&nbsp;y&nbsp;que&nbsp;si&nbsp;lo&nbsp;encuentra&nbsp;lo&nbsp;devuelve.<br>
+*Parametros*:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;picture&nbsp;:&nbsp;en&nbsp;la&nbsp;que&nbsp;busca&nbsp;un&nbsp;mesaje&nbsp;de&nbsp;texto&nbsp;codificado&nbsp;en&nbsp;el&nbsp;método&nbsp;implementado&nbsp;en&nbsp;el&nbsp;módulo<br>
+&nbsp;*Salida*&nbsp;:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;Mensaje&nbsp;de&nbsp;texto&nbsp;codificado&nbsp;en&nbsp;la&nbsp;imagen<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;Si&nbsp;no&nbsp;es&nbsp;posible&nbsp;encontrar&nbsp;el&nbsp;mensaje&nbsp;se&nbsp;devuelve&nbsp;una&nbsp;cadena&nbsp;vacía<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;Si&nbsp;no&nbsp;es&nbsp;posible&nbsp;encontrar&nbsp;la&nbsp;imagen&nbsp;se&nbsp;devuelve&nbsp;una&nbsp;mensaje&nbsp;indicándolo</tt></dd></dl>
+ <dl><dt><a name="-encode_message_to_picture"><strong>encode_message_to_picture</strong></a>(picture, message)</dt><dd><tt>Función&nbsp;que&nbsp;recibe&nbsp;una&nbsp;imagen&nbsp;y&nbsp;un&nbsp;mesaje,&nbsp;y&nbsp;crea&nbsp;una&nbsp;nueva&nbsp;imagen&nbsp;en&nbsp;la&nbsp;caperta&nbsp;<br>
+resources/images/output&nbsp;de&nbsp;este&nbsp;proyecto&nbsp;con&nbsp;el&nbsp;mensaje&nbsp;recibido&nbsp;codificado&nbsp;<br>
+a&nbsp;partir&nbsp;de&nbsp;la&nbsp;imagen&nbsp;recibida&nbsp;con&nbsp;el&nbsp;método&nbsp;implementado&nbsp;em&nbsp;el&nbsp;módulo.<br>
+*Parametros*:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;picture&nbsp;:&nbsp;imagen&nbsp;sin&nbsp;codificar<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;message&nbsp;:&nbsp;mensaje&nbsp;a&nbsp;codificar&nbsp;en&nbsp;la&nbsp;imagen&nbsp;&nbsp;<br>
+*Salida*&nbsp;:&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;Devuelve&nbsp;1&nbsp;si&nbsp;no&nbsp;ha&nbsp;habido&nbsp;ningún&nbsp;problema&nbsp;y&nbsp;0&nbsp;si&nbsp;no&nbsp;se&nbsp;ha&nbsp;podido&nbsp;codificar&nbsp;el&nbsp;mensaje</tt></dd></dl>
+ <dl><dt><a name="-get_message"><strong>get_message</strong></a>(pix, ymax, xmax, output)</dt><dd><tt>Función&nbsp;que&nbsp;recibe&nbsp;una&nbsp;matriz&nbsp;de&nbsp;pixeles&nbsp;en&nbsp;la&nbsp;que&nbsp;busca&nbsp;un&nbsp;mesaje&nbsp;de&nbsp;texto&nbsp;codificado&nbsp;con&nbsp;el&nbsp;método&nbsp;implementado&nbsp;en&nbsp;el&nbsp;módulo<br>
+,&nbsp;y&nbsp;devulve&nbsp;los&nbsp;bits&nbsp;del&nbsp;mensaje&nbsp;codificado.<br>
+*Parametros*:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;pix&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Matriz&nbsp;de&nbsp;pixeles&nbsp;en&nbsp;la&nbsp;que&nbsp;se&nbsp;busca&nbsp;un&nbsp;mesaje&nbsp;de&nbsp;texto&nbsp;codificado&nbsp;con&nbsp;el&nbsp;método&nbsp;implementado&nbsp;en&nbsp;el&nbsp;módulo.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;xmax,&nbsp;ymax&nbsp;&nbsp;&nbsp;:&nbsp;Limites&nbsp;vertical&nbsp;y&nbsp;horizontal&nbsp;en&nbsp;los&nbsp;que&nbsp;buscar&nbsp;el&nbsp;mensaje&nbsp;de&nbsp;texto&nbsp;codificado&nbsp;en&nbsp;la&nbsp;matriz&nbsp;de&nbsp;pixeles.&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;output&nbsp;:&nbsp;Variable&nbsp;que&nbsp;funciona&nbsp;como&nbsp;entrada/salida&nbsp;donde&nbsp;se&nbsp;devolverá&nbsp;el&nbsp;mensaje&nbsp;obtenido&nbsp;de&nbsp;la&nbsp;matriz,&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;si&nbsp;contiene&nbsp;información&nbsp;el&nbsp;mensaje&nbsp;obtenido&nbsp;se&nbsp;guarda&nbsp;despues&nbsp;de&nbsp;esta.&nbsp;Devuelve&nbsp;0&nbsp;si&nbsp;hay&nbsp;algún&nbsp;problema</tt></dd></dl>
+ <dl><dt><a name="-transform_image"><strong>transform_image</strong></a>(pix, data, ymax, xmax)</dt><dd><tt>Función&nbsp;que&nbsp;recibe&nbsp;una&nbsp;matriz&nbsp;de&nbsp;pixeles&nbsp;de&nbsp;una&nbsp;imagen&nbsp;y&nbsp;un&nbsp;array&nbsp;de&nbsp;bits&nbsp;de&nbsp;un&nbsp;mesaje&nbsp;de&nbsp;texto<br>
+que&nbsp;codifica&nbsp;el&nbsp;mensaje&nbsp;en&nbsp;la&nbsp;matriz&nbsp;de&nbsp;pixeles&nbsp;con&nbsp;el&nbsp;método&nbsp;implementado&nbsp;en&nbsp;el&nbsp;módulo.<br>
+*Parametros*:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;xmax,&nbsp;ymax&nbsp;:&nbsp;Limites&nbsp;vertical&nbsp;y&nbsp;horizontal&nbsp;de&nbsp;la&nbsp;matriz&nbsp;donde&nbsp;se&nbsp;puede&nbsp;codificar&nbsp;el&nbsp;mensaje.&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Array&nbsp;de&nbsp;bits&nbsp;a&nbsp;codificar&nbsp;en&nbsp;la&nbsp;matriz&nbsp;de&nbsp;píxeles<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;pix&nbsp;:&nbsp;Varieble&nbsp;de&nbsp;entrada/salida&nbsp;que&nbsp;representa&nbsp;la&nbsp;Matriz&nbsp;de&nbsp;píxeles&nbsp;de&nbsp;una&nbsp;imagen,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;se&nbsp;devuelve&nbsp;modificada&nbsp;con&nbsp;los&nbsp;bits&nbsp;del&nbsp;mensajes&nbsp;codificados.<br>
+*Salida*:&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;Devuleve&nbsp;1&nbsp;si&nbsp;no&nbsp;ha&nbsp;habido&nbsp;ningún&nbsp;problema&nbsp;y&nbsp;0&nbsp;si&nbsp;no&nbsp;se&nbsp;ha&nbsp;podido&nbsp;codificar&nbsp;el&nbsp;mensaje.</tt></dd></dl>
+ <dl><dt><a name="-values_block"><strong>values_block</strong></a>(x, y, v, w, pix)</dt></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>spec</strong> = ModuleSpec(name='utils', loader=&lt;_frozen_importl...602CEF40&gt;, origin='dfstego/utilities/myutils.py')</td></tr></table>
+</body></html>

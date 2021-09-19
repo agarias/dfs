@@ -173,8 +173,7 @@ class MethodPVDTest(unittest.TestCase):
 
     def test_change_source_no_change_red(self):        
         value_correct_red = self.pix[0,1][0]
-        pointer_aux = 0
-        self.pvd.change_source(self.pix,0,1,self.data,pointer_aux)
+        self.pvd.change_source(self.pix,0,1)
         self.assertEqual(self.pix[0,1][0],value_correct_red)
 
 
@@ -183,7 +182,7 @@ class MethodPVDTest(unittest.TestCase):
         pointer_aux = 0
         for i in range(4):
             with self.subTest("Message for this subtest",i=i):
-                self.pvd.change_source(self.pix,0,i,self.data,pointer_aux)        
+                self.pvd.change_source(self.pix,0,i)        
                 self.assertEqual(self.pix[0,i][0],value_correct_red)
 
 if __name__ == '__main__':

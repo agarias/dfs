@@ -11,10 +11,10 @@ myconstants = utils.import_module("myconstants", "dfstego/utilities/myconstants.
 
 def code_message_elias(message):
     """
-    Función que le pasamos una cadena de caracteres y transforma la cadena en un numero binario,
-    ese número binario lo transforma en un número en *codificación Elías Delta*.
+    Función que recibe una cadena de caracteres y transforma la cadena en un numero binario,
+    ese número binario lo transforma en un número en una variante *codificación Elias Delta*.
     *Parametros*: 
-        -> message : La cadena de carácteres a codificar en codigo ASCII y codificación Elías delta 
+        -> message : La cadena de carácteres a codificar en codigo ASCII  
     *Codificación Elías Delta*: 
         -> Primero se le añade a su izquierda el número de bits, codificado en binario que codifican el número.
         Por ejemplo, si tenemos 101 añadiriamos 3 codificado en binario a la izquierda obtendriamos 11101.
@@ -33,7 +33,7 @@ def code_message_elias(message):
 
 def change_bit(pix,x,y,z,element):
     """
-    Función que le pasamos una matriz de pixeles,las coordenas y el color del pixel a modificar, más el elemento a codificar o 0 o 1 
+    Función recibe una matriz de pixeles,las coordenas y el color del pixel a modificar, más el elemento a codificar o 0 o 1 
     y modifica el bit menos significativo el color del pixel que pasamos según el elemento que hayamos pasado si no coincide con el elemento a codificar.
 
     *Paramtetros* : 
@@ -93,16 +93,6 @@ def move_pointer(x,y,z,maximum):
             x= x+1
     return x,y,z
 
-# def encode_message(message,pix,maximum):   
-#     value_b = len(message) % 256
-#     value_g = len(message) // 256
-#     pix[0,0]=(pix[0,0][0],value_g,value_b)
-#     x = 0
-#     y = 1
-#     z = 0
-#     for element in message:
-#         change_bit(pix,x,y,z,element)
-#         x,y,z = move_pointer(x,y,z,maximum)
 def read_loop_bits(end,x,y,z,pix,maximum):
     """
     Función que lee un número determinado de bits codificados en una matriz de color de pixeles y que empieza en unas determinadas coordenadas. 
@@ -170,6 +160,18 @@ def decode_elias_message(pix,maximun,my_size):
 
 
 def loop_through_bits(end,bits_message,pointer):
+    """
+    Función que lee un número determinado de bits en array de bits y que empieza en unas determinadas posición,
+    y que devuelve los bits leidos y la posición del último bit leido.
+
+    *Paramtetros* : 
+        -> end         : Numero de bits a leer.
+        -> bits_message: Array de bits.
+        -> pointer     : Posición en la que se empieza a leer los bits.
+    *Salida* : 
+        -> pointer   : La posición del último bit leido 
+        -> read_bits : Será una cadena de caracteres con los bits leidos del array.  
+    """
     bits = 0
     read_bits = ''
     if not (pointer < len(bits_message)):
@@ -186,6 +188,13 @@ def loop_through_bits(end,bits_message,pointer):
 
 
 def decode_elias_bits_message(bits_message):
+    """
+    Función que recibe un numero binario codificacado en una variante de la *codificación Elias Delta*
+    y transforma en un entero decodificado.
+    *Parametros*: 
+        -> bits_message : numero binario codificacado en una variante de la *codificación Elias Delta*
+    
+    """
     pointer = 0
     bits = 0
     continue_loop = True
@@ -210,6 +219,14 @@ def decode_elias_bits_message(bits_message):
 
 
 def encode_message_to_picture(picture,message):
+    """
+    Función que recibe una imagen y un mesaje, y crea una nueva imagen en la caperta 
+    resources/images/output de este proyecto con el mensaje recibido codificado 
+    a partir de la imagen recibida con el método implementado em el módulo.
+    *Parametros*: 
+        -> picture : imagen sin codificar
+        -> message : mensaje a codificar en la imagen    
+    """
     im = utils.read_image(picture)
     if im == 0 :
         return 0
@@ -233,6 +250,16 @@ def encode_message_to_picture(picture,message):
     return 1
 
 def decode_message_to_picture(picture):
+    """
+    Función que recibe una imagen en la que busca un mesaje de texto codificado en el método implementado en el módulo
+    , y que si lo encuentra lo devuelve.
+    *Parametros*: 
+        -> picture : en la que busca un mesaje de texto codificado en el método implementado en el módulo
+     *Salida* : 
+        -> Mensaje de texto codificado en la imagen
+        -> Si no es posible encontrar el mensaje se devuelve una cadena vacía
+        -> Si no es posible encontrar la imagen se devuelve una mensaje indicándolo
+    """
     im = utils.read_image(picture)
     if im == 0 :
         return "No hemos encontrado imagen"

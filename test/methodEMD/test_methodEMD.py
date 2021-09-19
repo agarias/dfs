@@ -137,8 +137,7 @@ class MethodEMDTest(unittest.TestCase):
 
     def test_change_source_no_change_red(self):
         value_correct_red = self.pix[0,0][0]
-        pointer_aux = 0
-        self.emd.change_source(self.pix,0,0,self.data,pointer_aux)
+        self.emd.change_source(self.pix,0,0)
         self.assertEqual(self.pix[0,0][0],value_correct_red)
 
 
@@ -147,8 +146,7 @@ class MethodEMDTest(unittest.TestCase):
         pointer_aux = 0
         for i in range(4):
             with self.subTest("Message for this subtest",i=i):
-
-                self.emd.change_source(self.pix,0,i,self.data,pointer_aux)        
+                self.emd.change_source(self.pix,0,i)        
                 self.assertEqual(self.pix[0,i][0],value_correct_red)
 
 if __name__ == '__main__':

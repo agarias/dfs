@@ -18,7 +18,16 @@ def classify(diff):
     return nbits
 
 
-def change_source(pix,x,y,data,pointer):
+def change_source(pix,x,y):
+    """
+    Función que recibe una matriz de píxeles de una imagen y las coordenas del pixel origen de un bloque
+    y que modifica el píxel inidicado con el método implementado en el módulo.
+    *Parametros*: 
+        -> x,y : Coordenas del píxel origen. 
+
+        -> pix : Variable de entrada/salida que representa la Matriz de píxeles de una imagen,
+                 se devuelve con la modificación del pixel indicado.       
+    """ 
     value_red_initial = int(pix[x,y][myconstants.red])
     value_red = value_red_initial | 1
     
@@ -29,11 +38,9 @@ def change_source(pix,x,y,data,pointer):
         value_red=value_red - myconstants.red_color_addition
 
     pix[x,y]=(value_red,pix[x,y][myconstants.green],pix[x,y][myconstants.blue])
-    
-    return pointer
 
 
-def calculate_new_diff(diff):    
+def calculate_new_diff(diff): 
     if diff > 7:
         if diff >127:
             return 128
@@ -47,6 +54,19 @@ def calculate_new_diff(diff):
 
         
 def change_image_with_data_end(value_blue,value_green,value_red,pointer,value_source,data):
+    """
+    Función que recibe un array de bits de un mesaje de texto y la posición del array de bits 
+    del siguiente bit a codificar que devuelve los valores azul,verde y rojo del pixel 
+    que finaliza la codificación del mensaje con el método implementado en el módulo.
+    *Parametros*: 
+        -> data         : Array de bits a codificar en la matriz de píxeles.
+
+        -> value_blue,value_green,value_red : Variables que funcionan de entrada/salida y que representan los valores azul, verde y rojo del píxel
+                                              que finaliza la codificación y que se devolverán modificados según el método
+                                              implementado en el módulo.
+        -> pointer : Variable que funciona como entrada/salida donde se indica cual es el siguiente bit a códificar
+                     tanto al recibirlo como al devolverlo.          
+    """
     elements = len(data) - pointer
     value_blue = value_blue & myconstants.mask_blue_label
     value_green = value_green & myconstants.mask_green_label_0
@@ -63,7 +83,20 @@ def change_image_with_data_end(value_blue,value_green,value_red,pointer,value_so
 
 
 def change_pixel(pix,x,y,value_source,data,pointer):
-    
+    """
+    Función que recibe una matriz de píxeles de una imagen, un array de bits de un mesaje de texto
+    las coordenas deun pixel y la posición del array de bits del siguiente bit a codificar
+    que codifica parte del mensaje en el píxel inidicado con el método implementado en el módulo.
+    *Parametros*: 
+        -> x, y         : Coordenas del píxel. 
+        -> data         : Array de bits a codificar en la matriz de píxeles.
+        -> value_source : Valor de la coordena de color rojo del origen del bloque al que pertece el píxel
+
+        -> pix : Variable de entrada/salida que representa la Matriz de píxeles de una imagen,
+                 se devuelve modificada con los bits del mensajes correspondientes codificados en el pixel.
+        -> pointer : Variable que funciona como entrada/salida donde se indica cual es el siguiente bit a códificar
+                     tanto al recibirlo como al devolverlo.          
+    """     
     diff = abs(value_source -int(pix[x,y][myconstants.red]))
     counter = classify(diff)
     diff = calculate_new_diff(diff)
@@ -86,9 +119,22 @@ def change_pixel(pix,x,y,value_source,data,pointer):
 
 
 def change_block(pix,x,y,data,pointer):
+    """
+    Función que recibe una matriz de píxeles de una imagen, un array de bits de un mesaje de texto
+    las coordenas del origen de un bloque 2x2 y la posición del array de bits del siguiente bit a codificar
+    que codifica parte del mensaje en el bloque inidicado con el método implementado en el módulo.
+    *Parametros*: 
+        -> x, y : Coordenas del origen del bloque 2x2 . 
+        -> data : Array de bits a codificar en la matriz de píxeles.
+
+        -> pix : Varieble de entrada/salida que representa la Matriz de píxeles de una imagen,
+                 se devuelve modificada con los bits del mensajes correspondientes codificados en el bloque.
+        -> pointer : Variable que funciona como entrada/salida donde se indica cual es el siguiente bit a códificar
+                     tanto al recibirlo como al devolverlo.          
+    """ 
     v = y+1
     w = x+1    
-    pointer = change_source(pix,x,y,data,pointer)
+    change_source(pix,x,y)
     value_source = pix[x,y][myconstants.red]    
     pointer = change_pixel(pix,x,v,value_source,data,pointer)   
     pointer = change_pixel(pix,w,y,value_source,data,pointer)    
@@ -97,6 +143,19 @@ def change_block(pix,x,y,data,pointer):
 
 
 def transform_image(pix,data,ymax,xmax):
+    """
+    Función que recibe una matriz de píxeles de una imagen y un array de bits de un mesaje de texto
+    que codifica el mensaje en la matriz de píxeles con el método implementado en el módulo.
+    *Parametros*:        
+        -> xmax, ymax : Limites vertical y horizontal de la matriz donde se puede codificar el mensaje. 
+        -> data       : Array de bits a codificar en la matriz de píxeles
+
+        -> pix : Varieble de entrada/salida que representa la Matriz de píxeles de una imagen,
+                 se devuelve modificada con los bits del mensajes codificados.
+    *Salida*:   
+        -> Devuleve 1 si no ha habido ningún problema y 0 si no se ha podido codificar el mensaje.
+
+    """ 
     pointer = 0 
     x = 0
     y = 0
@@ -117,6 +176,15 @@ def transform_image(pix,data,ymax,xmax):
 
 
 def get_mask(elements):
+    """
+    Función que recibe un numero de digitos binarios a codificar en un numero de 8 bits  
+    y devuleve la máscara para poder codificar ese número de digitos binarios.
+    *Parametros*: 
+        -> elements : Número de digitos binarios a codificar. 
+    *Salida*: 
+        -> mask: Máscara para poder codificar elements digitos binarios en un número de 8 bits. 
+
+    """
     potencia = 1
     mask = 255
     while elements > 0: 
@@ -127,6 +195,17 @@ def get_mask(elements):
 
 
 def get_new_output(value,elements,output):
+    """
+    Función que recibe un numero de digitos y un valor decimal,transforma el valor decimal en binario con el numero de digitos indicado
+    y lo añade los bits obtenidos a un array de bits que se recibe.
+    *Parametros*: 
+        -> value    : Valor decimal que hay pasar a binario.
+        -> elements : Número de digitos que hay que usar para pasar  value a  binario. 
+
+        -> output   : Variable que funciona como entrada/salida donde se devolverán los bits obtenidos del valor indicado,
+                      si contiene información los bits se guardan despues de esta.
+
+    """
     if elements != 0:
         bin_output = bin(value)[2:]
         if len(bin_output)< elements:
@@ -136,6 +215,20 @@ def get_new_output(value,elements,output):
 
 
 def get_bits_pixel(pix,x,y,value_source,output,continue_loop):
+    """
+    Función que recibe una matriz de píxeles y las coordenas de un pixel, en el que se busca parte de un mesaje de texto codificado
+    con el método implementado en el módulo, y devulve los bits codificados en el píxel.
+    *Parametros*: 
+        -> pix          : Matriz de pixeles en la que se busca un mesaje de texto codificado con el método implementado en el módulo.
+        -> x,y          : Coordenadas del pixel. 
+        -> value_source : Valor de la coordenada de color rojo del origen del bloque.
+
+        -> output        : Variable que funciona como entrada/salida donde se devolverán los bits obtenidos en el píxel, 
+                           si contiene información los bits se guardan despues de esta. 
+        -> continue_loop : Variable que funciona como entrada/salida y que indica si continuamos buscando en la matriz 
+                           y seguimos con el siguiente píxel. 
+
+    """
     value = int(pix[x,y][myconstants.blue])
     diff = abs(int(pix[x,y][myconstants.red])-value_source)
     if continue_loop:
@@ -155,6 +248,20 @@ def get_bits_pixel(pix,x,y,value_source,output,continue_loop):
 
 
 def get_bits_block(pix,x,y,output,continue_loop):
+    """
+    Función que recibe una matriz de pixeles y las coordenas del origen de un bloque 2x2,
+    en el que se busca parte de un mesaje de texto codificado con el método implementado en el módulo
+    , y devulve los bits codificados en el bloque.
+    *Parametros*: 
+        -> pix    : Matriz de pixeles en la que se busca un mesaje de texto codificado con el método implementado en el módulo.
+        -> x,y    : Coordenadas del origen del bloque 2x2. 
+
+        -> output        : Variable que funciona como entrada/salida donde se devolverán los bits obtenidos en el bloque, 
+                           si contiene información los bits se guardan despues de esta. 
+        -> continue_loop : Variable que funciona como entrada/salida y que indica si continuamos buscando en la matriz 
+                           y seguimos con el siguiente bloque. 
+
+    """ 
     v = y+1
     w = x+1 
     value_source = pix[x,y][myconstants.red]
@@ -166,6 +273,17 @@ def get_bits_block(pix,x,y,output,continue_loop):
 
 
 def get_message_pvd(pix,ymax,xmax,output):
+    """
+    Función que recibe una matriz de pixeles en la que busca un mesaje de texto codificado con el método implementado en el módulo
+    , y devulve los bits del mensaje codificado.
+    *Parametros*: 
+        -> pix          : Matriz de pixeles en la que se busca un mesaje de texto codificado con el método implementado en el módulo.
+        -> xmax, ymax   : Limites vertical y horizontal en los que buscar el mensaje de texto codificado en la matriz de pixeles. 
+        
+        -> output : Variable que funciona como entrada/salida donde se devolverá el mensaje obtenido de la matriz, 
+                    si contiene información el mensaje obtenido se guarda despues de esta. 
+
+    """    
     continue_loop = True
     x = 0
     y = 0
@@ -188,6 +306,17 @@ def get_message_pvd(pix,ymax,xmax,output):
 
 
 def encode_message_to_picture(picture,message):
+    """
+    Función que recibe una imagen y un mesaje, y crea una nueva imagen en la caperta 
+    resources/images/output de este proyecto con el mensaje recibido codificado 
+    a partir de la imagen recibida con el método implementado em el módulo.
+    *Parametros*: 
+        -> picture : imagen sin codificar
+        -> message : mensaje a codificar en la imagen    
+    *Salida* :   
+        -> Devuelve 1 si no ha habido ningún problema y 0 si no se ha podido codificar el mensaje
+    """
+
     im = utils.read_image(picture)
     if im == 0 :
         return 0
@@ -206,6 +335,16 @@ def encode_message_to_picture(picture,message):
 
 
 def decode_message_to_picture(picture):
+    """
+    Función que recibe una imagen en la que busca un mesaje de texto codificado con el método implementado en el módulo
+    , y que si lo encuentra lo devuelve.
+    *Parametros*: 
+        -> picture : Imagen en la que se busca un mesaje de texto codificado con el método implementado en el módulo.
+     *Salida* : 
+        -> Mensaje de texto codificado en la imagen
+        -> Si no es posible encontrar el mensaje se devuelve una cadena vacía
+        -> Si no es posible encontrar la imagen se devuelve una mensaje indicándolo
+    """ 
     im = utils.read_image(picture)
     if im == 0 :
         return "No hemos encontrado imagen"

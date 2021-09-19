@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module methodLSB</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>methodLSB</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:e%3A%5C2021%5Cuni%5Ctfg%5Cgithub%5Cdfs%5Cdfstego%5Cmethods%5Cmethodlsb.py">e:\2021\uni\tfg\github\dfs\dfstego\methods\methodlsb.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="binascii.html">binascii</a><br>
+<a href="importlib.util.html">importlib.util</a><br>
+</td><td width="25%" valign=top><a href="myconstants.html">myconstants</a><br>
+<a href="numpy.html">numpy</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+<a href="utils.html">utils</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-change_bit"><strong>change_bit</strong></a>(pix, x, y, z, element)</dt><dd><tt>Función&nbsp;recibe&nbsp;una&nbsp;matriz&nbsp;de&nbsp;pixeles,las&nbsp;coordenas&nbsp;y&nbsp;el&nbsp;color&nbsp;del&nbsp;pixel&nbsp;a&nbsp;modificar,&nbsp;más&nbsp;el&nbsp;elemento&nbsp;a&nbsp;codificar&nbsp;o&nbsp;0&nbsp;o&nbsp;1&nbsp;<br>
+y&nbsp;modifica&nbsp;el&nbsp;bit&nbsp;menos&nbsp;significativo&nbsp;el&nbsp;color&nbsp;del&nbsp;pixel&nbsp;que&nbsp;pasamos&nbsp;según&nbsp;el&nbsp;elemento&nbsp;que&nbsp;hayamos&nbsp;pasado&nbsp;si&nbsp;no&nbsp;coincide&nbsp;con&nbsp;el&nbsp;elemento&nbsp;a&nbsp;codificar.<br>
+&nbsp;<br>
+*Paramtetros*&nbsp;:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;pix&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Matriz&nbsp;de&nbsp;color&nbsp;de&nbsp;pixeles&nbsp;de&nbsp;la&nbsp;imagen&nbsp;en&nbsp;la&nbsp;que&nbsp;hay&nbsp;que&nbsp;codificar&nbsp;el&nbsp;mensaje<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;x,y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Coordenas&nbsp;del&nbsp;pixel&nbsp;a&nbsp;modificar&nbsp;,&nbsp;son&nbsp;dos&nbsp;enteros<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Color&nbsp;a&nbsp;modificar&nbsp;del&nbsp;pixel,&nbsp;es&nbsp;un&nbsp;entero&nbsp;entre&nbsp;los&nbsp;valores&nbsp;0,1,2.&nbsp;0&nbsp;indica&nbsp;rojo,&nbsp;1&nbsp;indica&nbsp;green&nbsp;,&nbsp;2&nbsp;indica&nbsp;blue&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;element&nbsp;:&nbsp;Bit&nbsp;que&nbsp;tenemos&nbsp;que&nbsp;codificar&nbsp;en&nbsp;el&nbsp;pixel,&nbsp;en&nbsp;forma&nbsp;de&nbsp;caracter&nbsp;'0'&nbsp;o&nbsp;'1'</tt></dd></dl>
+ <dl><dt><a name="-code_message_elias"><strong>code_message_elias</strong></a>(message)</dt><dd><tt>Función&nbsp;que&nbsp;recibe&nbsp;una&nbsp;cadena&nbsp;de&nbsp;caracteres&nbsp;y&nbsp;transforma&nbsp;la&nbsp;cadena&nbsp;en&nbsp;un&nbsp;numero&nbsp;binario,<br>
+ese&nbsp;número&nbsp;binario&nbsp;lo&nbsp;transforma&nbsp;en&nbsp;un&nbsp;número&nbsp;en&nbsp;una&nbsp;variante&nbsp;*codificación&nbsp;Elias&nbsp;Delta*.<br>
+*Parametros*:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;message&nbsp;:&nbsp;La&nbsp;cadena&nbsp;de&nbsp;carácteres&nbsp;a&nbsp;codificar&nbsp;en&nbsp;codigo&nbsp;ASCII&nbsp;&nbsp;<br>
+*Codificación&nbsp;Elías&nbsp;Delta*:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;Primero&nbsp;se&nbsp;le&nbsp;añade&nbsp;a&nbsp;su&nbsp;izquierda&nbsp;el&nbsp;número&nbsp;de&nbsp;bits,&nbsp;codificado&nbsp;en&nbsp;binario&nbsp;que&nbsp;codifican&nbsp;el&nbsp;número.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Por&nbsp;ejemplo,&nbsp;si&nbsp;tenemos&nbsp;101&nbsp;añadiriamos&nbsp;3&nbsp;codificado&nbsp;en&nbsp;binario&nbsp;a&nbsp;la&nbsp;izquierda&nbsp;obtendriamos&nbsp;11101.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;Después&nbsp;tenemos&nbsp;que&nbsp;añadir&nbsp;a&nbsp;la&nbsp;izquierda&nbsp;un&nbsp;número&nbsp;de&nbsp;ceros&nbsp;igual&nbsp;a&nbsp;los&nbsp;bits&nbsp;necesarios&nbsp;para&nbsp;la&nbsp;codificación<br>
+&nbsp;&nbsp;&nbsp;&nbsp;del&nbsp;número&nbsp;de&nbsp;bits.&nbsp;&nbsp;En&nbsp;el&nbsp;ejemplo&nbsp;que&nbsp;hemos&nbsp;puesto&nbsp;hemos&nbsp;codificado&nbsp;3&nbsp;que&nbsp;su&nbsp;codificación&nbsp;que&nbsp;require&nbsp;2&nbsp;bits&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;por&nbsp;lo&nbsp;tanto&nbsp;añadiríamos&nbsp;2&nbsp;ceros&nbsp;y&nbsp;obtendríamos&nbsp;0011101</tt></dd></dl>
+ <dl><dt><a name="-decode_elias_bits_message"><strong>decode_elias_bits_message</strong></a>(bits_message)</dt><dd><tt>Función&nbsp;que&nbsp;recibe&nbsp;un&nbsp;numero&nbsp;binario&nbsp;codificacado&nbsp;en&nbsp;una&nbsp;variante&nbsp;de&nbsp;la&nbsp;*codificación&nbsp;Elias&nbsp;Delta*<br>
+y&nbsp;transforma&nbsp;en&nbsp;un&nbsp;entero&nbsp;decodificado.<br>
+*Parametros*:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;bits_message&nbsp;:&nbsp;numero&nbsp;binario&nbsp;codificacado&nbsp;en&nbsp;una&nbsp;variante&nbsp;de&nbsp;la&nbsp;*codificación&nbsp;Elias&nbsp;Delta*</tt></dd></dl>
+ <dl><dt><a name="-decode_elias_message"><strong>decode_elias_message</strong></a>(pix, maximun, my_size)</dt><dd><tt>Función&nbsp;que&nbsp;lee&nbsp;un&nbsp;número&nbsp;binario&nbsp;codificado&nbsp;en&nbsp;un&nbsp;matriz&nbsp;de&nbsp;color&nbsp;de&nbsp;pixeles&nbsp;y&nbsp;lo&nbsp;devuelve&nbsp;en&nbsp;decimal.&nbsp;<br>
+&nbsp;<br>
+*Paramtetros*&nbsp;:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;pix&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Matriz&nbsp;de&nbsp;color&nbsp;de&nbsp;pixeles&nbsp;de&nbsp;la&nbsp;imagen&nbsp;en&nbsp;la&nbsp;que&nbsp;hay&nbsp;un&nbsp;mensaje&nbsp;codificado&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;maximun&nbsp;:&nbsp;Maximo&nbsp;de&nbsp;la&nbsp;coordenada&nbsp;y,&nbsp;es&nbsp;un&nbsp;entero<br>
+*Salida*&nbsp;:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;Numero&nbsp;decimal&nbsp;recogido&nbsp;de&nbsp;la&nbsp;imagen&nbsp;que&nbsp;debería&nbsp;representar&nbsp;un&nbsp;mensaje<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;Si&nbsp;no&nbsp;hay&nbsp;níngun&nbsp;número&nbsp;códificado&nbsp;devolvemos&nbsp;-1</tt></dd></dl>
+ <dl><dt><a name="-decode_message_to_picture"><strong>decode_message_to_picture</strong></a>(picture)</dt><dd><tt>Función&nbsp;que&nbsp;recibe&nbsp;una&nbsp;imagen&nbsp;en&nbsp;la&nbsp;que&nbsp;busca&nbsp;un&nbsp;mesaje&nbsp;de&nbsp;texto&nbsp;codificado&nbsp;en&nbsp;el&nbsp;método&nbsp;implementado&nbsp;en&nbsp;el&nbsp;módulo<br>
+,&nbsp;y&nbsp;que&nbsp;si&nbsp;lo&nbsp;encuentra&nbsp;lo&nbsp;devuelve.<br>
+*Parametros*:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;picture&nbsp;:&nbsp;en&nbsp;la&nbsp;que&nbsp;busca&nbsp;un&nbsp;mesaje&nbsp;de&nbsp;texto&nbsp;codificado&nbsp;en&nbsp;el&nbsp;método&nbsp;implementado&nbsp;en&nbsp;el&nbsp;módulo<br>
+&nbsp;*Salida*&nbsp;:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;Mensaje&nbsp;de&nbsp;texto&nbsp;codificado&nbsp;en&nbsp;la&nbsp;imagen<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;Si&nbsp;no&nbsp;es&nbsp;posible&nbsp;encontrar&nbsp;el&nbsp;mensaje&nbsp;se&nbsp;devuelve&nbsp;una&nbsp;cadena&nbsp;vacía<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;Si&nbsp;no&nbsp;es&nbsp;posible&nbsp;encontrar&nbsp;la&nbsp;imagen&nbsp;se&nbsp;devuelve&nbsp;una&nbsp;mensaje&nbsp;indicándolo</tt></dd></dl>
+ <dl><dt><a name="-encode_message_to_picture"><strong>encode_message_to_picture</strong></a>(picture, message)</dt><dd><tt>Función&nbsp;que&nbsp;recibe&nbsp;una&nbsp;imagen&nbsp;y&nbsp;un&nbsp;mesaje,&nbsp;y&nbsp;crea&nbsp;una&nbsp;nueva&nbsp;imagen&nbsp;en&nbsp;la&nbsp;caperta&nbsp;<br>
+resources/images/output&nbsp;de&nbsp;este&nbsp;proyecto&nbsp;con&nbsp;el&nbsp;mensaje&nbsp;recibido&nbsp;codificado&nbsp;<br>
+a&nbsp;partir&nbsp;de&nbsp;la&nbsp;imagen&nbsp;recibida&nbsp;con&nbsp;el&nbsp;método&nbsp;implementado&nbsp;em&nbsp;el&nbsp;módulo.<br>
+*Parametros*:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;picture&nbsp;:&nbsp;imagen&nbsp;sin&nbsp;codificar<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;message&nbsp;:&nbsp;mensaje&nbsp;a&nbsp;codificar&nbsp;en&nbsp;la&nbsp;imagen</tt></dd></dl>
+ <dl><dt><a name="-loop_through_bits"><strong>loop_through_bits</strong></a>(end, bits_message, pointer)</dt><dd><tt>Función&nbsp;que&nbsp;lee&nbsp;un&nbsp;número&nbsp;determinado&nbsp;de&nbsp;bits&nbsp;en&nbsp;array&nbsp;de&nbsp;bits&nbsp;y&nbsp;que&nbsp;empieza&nbsp;en&nbsp;unas&nbsp;determinadas&nbsp;posición,<br>
+y&nbsp;que&nbsp;devuelve&nbsp;los&nbsp;bits&nbsp;leidos&nbsp;y&nbsp;la&nbsp;posición&nbsp;del&nbsp;último&nbsp;bit&nbsp;leido.<br>
+&nbsp;<br>
+*Paramtetros*&nbsp;:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;end&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Numero&nbsp;de&nbsp;bits&nbsp;a&nbsp;leer.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;bits_message:&nbsp;Array&nbsp;de&nbsp;bits.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;pointer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Posición&nbsp;en&nbsp;la&nbsp;que&nbsp;se&nbsp;empieza&nbsp;a&nbsp;leer&nbsp;los&nbsp;bits.<br>
+*Salida*&nbsp;:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;pointer&nbsp;&nbsp;&nbsp;:&nbsp;La&nbsp;posición&nbsp;del&nbsp;último&nbsp;bit&nbsp;leido&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;read_bits&nbsp;:&nbsp;Será&nbsp;una&nbsp;cadena&nbsp;de&nbsp;caracteres&nbsp;con&nbsp;los&nbsp;bits&nbsp;leidos&nbsp;del&nbsp;array.</tt></dd></dl>
+ <dl><dt><a name="-move_pointer"><strong>move_pointer</strong></a>(x, y, z, maximum)</dt><dd><tt>Función&nbsp;que&nbsp;mueve&nbsp;el&nbsp;puntero&nbsp;de&nbsp;la&nbsp;matriz&nbsp;de&nbsp;color&nbsp;de&nbsp;pixeles&nbsp;una&nbsp;posición&nbsp;ya&nbsp;sea&nbsp;por&nbsp;en&nbsp;la&nbsp;dimensión&nbsp;del&nbsp;color&nbsp;o&nbsp;en&nbsp;las&nbsp;coordenas&nbsp;x&nbsp;e&nbsp;y.<br>
+Dadas&nbsp;las&nbsp;coordenas&nbsp;actuales&nbsp;de&nbsp;la&nbsp;matriz&nbsp;x,y,z&nbsp;(donde&nbsp;z&nbsp;representa&nbsp;el&nbsp;color),&nbsp;primero&nbsp;se&nbsp;mueve&nbsp;en&nbsp;la&nbsp;coordena&nbsp;del&nbsp;color,&nbsp;si&nbsp;no&nbsp;esta&nbsp;en&nbsp;azul&nbsp;<br>
+pasamos&nbsp;a&nbsp;la&nbsp;siguiente&nbsp;en&nbsp;el&nbsp;orden&nbsp;RGB&nbsp;(rojo-verde-azul),&nbsp;si&nbsp;estamos&nbsp;en&nbsp;azul&nbsp;tenemos&nbsp;que&nbsp;cambiar&nbsp;de&nbsp;coordena&nbsp;de&nbsp;pixel,&nbsp;y&nbsp;nos&nbsp;moveremos&nbsp;primero&nbsp;<br>
+por&nbsp;la&nbsp;coordena&nbsp;y.&nbsp;Si&nbsp;hemos&nbsp;llegado&nbsp;al&nbsp;final&nbsp;de&nbsp;la&nbsp;coordenada&nbsp;y&nbsp;pasaremos&nbsp;a&nbsp;mover&nbsp;la&nbsp;coordena&nbsp;x.&nbsp;<br>
+Ejemplos&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Si&nbsp;tenemos&nbsp;un&nbsp;maximo&nbsp;de&nbsp;y&nbsp;de&nbsp;10,&nbsp;y&nbsp;empezamos&nbsp;en&nbsp;la&nbsp;coordena&nbsp;x,y&nbsp;(0,0)&nbsp;y&nbsp;con&nbsp;el&nbsp;color&nbsp;rojo,&nbsp;al&nbsp;salir&nbsp;de&nbsp;la&nbsp;función&nbsp;seguiremos&nbsp;en&nbsp;la&nbsp;coordena&nbsp;(0,0)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pero&nbsp;habremos&nbsp;pasado&nbsp;al&nbsp;verde<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Si&nbsp;tenemos&nbsp;un&nbsp;maximo&nbsp;de&nbsp;y&nbsp;de&nbsp;10,&nbsp;y&nbsp;empezamos&nbsp;en&nbsp;la&nbsp;coordena&nbsp;x,y&nbsp;(0,0)&nbsp;y&nbsp;con&nbsp;el&nbsp;color&nbsp;azul,&nbsp;al&nbsp;salir&nbsp;de&nbsp;la&nbsp;función&nbsp;saltaremos&nbsp;a&nbsp;la&nbsp;coordena&nbsp;(0,1)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pero&nbsp;habremos&nbsp;pasado&nbsp;al&nbsp;rojo&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Si&nbsp;tenemos&nbsp;un&nbsp;maximo&nbsp;de&nbsp;y&nbsp;de&nbsp;10,&nbsp;y&nbsp;empezamos&nbsp;en&nbsp;la&nbsp;coordena&nbsp;x,y&nbsp;(0,10)&nbsp;y&nbsp;con&nbsp;el&nbsp;color&nbsp;azul,&nbsp;al&nbsp;salir&nbsp;de&nbsp;la&nbsp;función&nbsp;saltaremos&nbsp;a&nbsp;la&nbsp;coordena&nbsp;(1,0)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pero&nbsp;habremos&nbsp;pasado&nbsp;al&nbsp;rojo&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+*Paramtetros*&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;x,y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Coordenas&nbsp;del&nbsp;pixel&nbsp;donde&nbsp;estamos,&nbsp;son&nbsp;dos&nbsp;enteros.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Color&nbsp;del&nbsp;pixel&nbsp;por&nbsp;donde&nbsp;estamos,&nbsp;es&nbsp;un&nbsp;entero&nbsp;entre&nbsp;los&nbsp;valores&nbsp;0,1,2.&nbsp;0&nbsp;indica&nbsp;rojo,&nbsp;1&nbsp;indica&nbsp;green&nbsp;,&nbsp;2&nbsp;indica&nbsp;blue&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;maximun&nbsp;:&nbsp;Maximo&nbsp;de&nbsp;la&nbsp;coordenada&nbsp;y&nbsp;es&nbsp;un&nbsp;entero<br>
+&nbsp;<br>
+*Salida*:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;x,y,z&nbsp;:&nbsp;Seran&nbsp;las&nbsp;tres&nbsp;coordenadas&nbsp;se&nbsp;hayan&nbsp;modificado&nbsp;o&nbsp;no,&nbsp;son&nbsp;tres&nbsp;enteros</tt></dd></dl>
+ <dl><dt><a name="-read_loop_bits"><strong>read_loop_bits</strong></a>(end, x, y, z, pix, maximum)</dt><dd><tt>Función&nbsp;que&nbsp;lee&nbsp;un&nbsp;número&nbsp;determinado&nbsp;de&nbsp;bits&nbsp;codificados&nbsp;en&nbsp;una&nbsp;matriz&nbsp;de&nbsp;color&nbsp;de&nbsp;pixeles&nbsp;y&nbsp;que&nbsp;empieza&nbsp;en&nbsp;unas&nbsp;determinadas&nbsp;coordenadas.&nbsp;<br>
+&nbsp;<br>
+*Paramtetros*&nbsp;:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;end&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Numero&nbsp;de&nbsp;bits&nbsp;a&nbsp;leer.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;x,y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Coordenas&nbsp;del&nbsp;pixel&nbsp;donde&nbsp;estamos,&nbsp;son&nbsp;dos&nbsp;enteros.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Color&nbsp;del&nbsp;pixel&nbsp;por&nbsp;donde&nbsp;estamos,&nbsp;es&nbsp;un&nbsp;entero&nbsp;entre&nbsp;los&nbsp;valores&nbsp;0,1,2.&nbsp;0&nbsp;indica&nbsp;rojo,&nbsp;1&nbsp;indica&nbsp;green&nbsp;,&nbsp;2&nbsp;indica&nbsp;blue.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;pix&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Matriz&nbsp;de&nbsp;color&nbsp;de&nbsp;pixeles&nbsp;de&nbsp;la&nbsp;imagen&nbsp;en&nbsp;la&nbsp;que&nbsp;hay&nbsp;un&nbsp;mensaje&nbsp;codificado&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;maximun&nbsp;:&nbsp;Maximo&nbsp;de&nbsp;la&nbsp;coordenada&nbsp;y&nbsp;es&nbsp;un&nbsp;entero<br>
+*Salida*&nbsp;:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;x,y,z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Las&nbsp;coordenadas&nbsp;modificas&nbsp;son&nbsp;tres&nbsp;enteros&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;read_bits&nbsp;:&nbsp;Será&nbsp;una&nbsp;cadena&nbsp;de&nbsp;caracteres&nbsp;con&nbsp;los&nbsp;bits&nbsp;leidos&nbsp;de&nbsp;la&nbsp;matriz.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>spec</strong> = ModuleSpec(name='utils', loader=&lt;_frozen_importl...874DFF10&gt;, origin='dfstego/utilities/myutils.py')</td></tr></table>
+</body></html>

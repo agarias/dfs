@@ -27,6 +27,19 @@ def calculate_average_pixel_value_difference(red_pc,red_p1,red_p2,red_p3):
 
     
 def change_block(pix,x,y,data,pointer):
+    """
+    Función que recibe una matriz de píxeles de una imagen, un array de bits de un mesaje de texto
+    las coordenas del origen de un bloque 2x2 y la posición del array de bits del siguiente bit a codificar
+    que codifica parte del mensaje en el bloque inidicado con el método implementado en el módulo.
+    *Parametros*: 
+        -> x, y : Coordenas del origen del bloque 2x2 . 
+        -> data : Array de bits a codificar en la matriz de píxeles.
+
+        -> pix : Varieble de entrada/salida que representa la Matriz de píxeles de una imagen,
+                 se devuelve modificada con los bits del mensajes correspondientes codificados en el bloque.
+        -> pointer : Variable que funciona como entrada/salida donde se indica cual es el siguiente bit a códificar
+                     tanto al recibirlo como al devolverlo.          
+    """
     v = y+1
     w = x+1 
     red_pc,red_p1,red_p2,red_p3 = values_block(x,y,v,w,pix)
@@ -40,6 +53,19 @@ def change_block(pix,x,y,data,pointer):
 
 
 def transform_image(pix,data,ymax,xmax):
+
+    """
+    Función que recibe una matriz de pixeles de una imagen y un array de bits de un mesaje de texto
+    que codifica el mensaje en la matriz de pixeles con el método implementado en el módulo.
+    *Parametros*:        
+        -> xmax, ymax : Limites vertical y horizontal de la matriz donde se puede codificar el mensaje. 
+        -> data       : Array de bits a codificar en la matriz de píxeles
+
+        -> pix : Varieble de entrada/salida que representa la Matriz de píxeles de una imagen,
+                 se devuelve modificada con los bits del mensajes codificados.
+    *Salida*:   
+        -> Devuleve 1 si no ha habido ningún problema y 0 si no se ha podido codificar el mensaje.
+    """ 
     pointer = 0 
     x = 0
     y = 0   
@@ -60,6 +86,17 @@ def transform_image(pix,data,ymax,xmax):
     return 1
 
 def get_message(pix,ymax,xmax,output):
+    """
+    Función que recibe una matriz de pixeles en la que busca un mesaje de texto codificado con el método implementado en el módulo
+    , y devulve los bits del mensaje codificado.
+    *Parametros*: 
+        -> pix          : Matriz de pixeles en la que se busca un mesaje de texto codificado con el método implementado en el módulo.
+        -> xmax, ymax   : Limites vertical y horizontal en los que buscar el mensaje de texto codificado en la matriz de pixeles. 
+        
+        -> output : Variable que funciona como entrada/salida donde se devolverá el mensaje obtenido de la matriz, 
+                    si contiene información el mensaje obtenido se guarda despues de esta. Devuelve 0 si hay algún problema 
+
+    """ 
     x = 0
     y = 0
     continue_loop = True
@@ -68,7 +105,7 @@ def get_message(pix,ymax,xmax,output):
         if (value % 2)== 1:
             continue_loop,output = pvd.get_bits_block(pix,x,y,output,continue_loop)
         else:
-            continue_loop,output = emd.get_bits_block(pix,x,y,output,continue_loop,True)
+            continue_loop,output = emd.get_bits_block(pix,x,y,output,continue_loop)
             
         y = y+2
         if y > ymax:
@@ -81,6 +118,16 @@ def get_message(pix,ymax,xmax,output):
 
 
 def encode_message_to_picture(picture,message):
+    """
+    Función que recibe una imagen y un mesaje, y crea una nueva imagen en la caperta 
+    resources/images/output de este proyecto con el mensaje recibido codificado 
+    a partir de la imagen recibida con el método implementado em el módulo.
+    *Parametros*: 
+        -> picture : imagen sin codificar
+        -> message : mensaje a codificar en la imagen  
+    *Salida* :   
+        -> Devuelve 1 si no ha habido ningún problema y 0 si no se ha podido codificar el mensaje
+    """
     im = utils.read_image(picture)
     if im == 0 :
         return 0
@@ -98,6 +145,16 @@ def encode_message_to_picture(picture,message):
     return result
 
 def decode_message_to_picture(picture):
+    """
+    Función que recibe una imagen en la que busca un mesaje de texto codificado en el método implementado en el módulo
+    , y que si lo encuentra lo devuelve.
+    *Parametros*: 
+        -> picture : en la que busca un mesaje de texto codificado en el método implementado en el módulo
+     *Salida* : 
+        -> Mensaje de texto codificado en la imagen
+        -> Si no es posible encontrar el mensaje se devuelve una cadena vacía
+        -> Si no es posible encontrar la imagen se devuelve una mensaje indicándolo
+    """
     im = utils.read_image(picture)
     if im == 0 :
         return "No hemos encontrado imagen"
